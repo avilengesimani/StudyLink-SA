@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/tvPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Points: 0"
+            android:textSize="18sp"
+            android:padding="15dp"/>
+
+        <TextView
+            android:id="@+id/tvStreak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Study Streak: 0 days"
+            android:textSize="18sp"
+            android:padding="15dp"/>
+
+        <Button
+            android:id="@+id/btnTimetable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Timetable"/>
+
+        <Button
+            android:id="@+id/btnAssignments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Assignments"/>
+
+        <Button
+            android:id="@+id/btnExams"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Examinations"/>
+
+        <Button
+            android:id="@+id/btnFlashcards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flashcards"/>
+
+        <Button
+            android:id="@+id/btnQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Take Quiz"/>
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings"/>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"/>
+
+    </LinearLayout>
+
+</ScrollView>
