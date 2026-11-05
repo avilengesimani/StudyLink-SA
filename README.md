@@ -1,103 +1,233 @@
-# StudyLink SA
+# StudyLink SA – Student Academic Management Application
 
-## Project Description
+## 1. Project Overview
 
-StudyLink SA is an Android student productivity and academic support application designed to help students manage and organise their academic responsibilities in one platform.
+StudyLink SA is an Android mobile application developed to help students organise and manage their academic activities in one convenient platform.
 
-The application combines academic planning and study activities by providing features such as user registration and login, timetable management, assignment management, examination information, flashcards, quizzes, study progress and user settings.
+The application provides students with tools to manage assignments, examinations and timetables, while also supporting learning through flashcards and quizzes. It aims to improve academic organisation, encourage effective study habits and make important academic information easier to access.
 
-The application was developed as part of the OPSC6312 Programming Fundamentals Portfolio of Evidence (POE) and demonstrates the development of an Android application using Kotlin and Android Studio.
+This project was developed as part of the **OPSC6312 – Programming Fundamentals** module, focusing on Android application development, database integration, authentication, offline functionality and user-friendly interface design.
 
----
-
-## Project Objectives
+## 2. Project Objectives
 
 The main objectives of StudyLink SA are to:
 
-- Help students organise their academic activities.
-- Allow students to manage important academic tasks and deadlines.
-- Provide students with revision tools such as flashcards and quizzes.
-- Provide a central dashboard for accessing academic information.
-- Allow users to create and manage their own study information.
-- Provide an easy-to-use Android interface for students.
+- Provide a secure registration and login system.
+- Allow students to manage their academic information.
+- Provide flashcards and quizzes to support learning.
+- Store and retrieve student information using cloud database services.
+- Support access to saved academic information when offline.
+- Provide notifications and reminders for important academic activities.
+- Support multiple languages to improve accessibility.
+- Create a simple and user-friendly mobile experience.
 
----
+## 3. Main Features
 
-## Features
+### User Authentication
+- Student registration using email and password.
+- Secure login through Supabase Authentication.
+- Google Sign-In integration.
+- User-specific academic information.
 
-### User Registration and Login
+### Academic Management
+- Assignment management.
+- Examination management.
+- Timetable management.
+- Organisation of important academic activities.
 
-Users can create an account using their name, email address and password.
+### Learning Tools
+- Flashcards to assist with revision.
+- Quizzes to test knowledge.
+- Learning activities designed to support student progress.
 
-The application also validates login information before allowing access to the dashboard.
+### Database Integration
+- Supabase cloud services for authentication and online data management.
+- PostgreSQL database accessed through the Supabase API.
+- Room database for local storage of academic records.
 
-### Dashboard
+### Offline Functionality
+- Locally stored academic information can be accessed without an internet connection.
+- WorkManager supports background synchronisation when connectivity becomes available.
 
-The dashboard provides the main navigation area of the application and allows users to access the different StudyLink SA features.
+### Notifications
+- Notifications and reminders for academic activities.
+- Firebase Cloud Messaging integration for push notification functionality.
 
-### Timetable
+### Language Support
+The application includes language options for:
+- English
+- isiZulu
+- isiXhosa
 
-Students can use the timetable functionality to organise their classes, subjects, times and venues.
+### User Settings
+- Manage application preferences.
+- Change language settings.
+- Configure notification preferences.
+- Update personal display information.
 
-### Assignment Management
+## 4. Technologies Used
 
-Students can manage academic assignments, including assignment information, subjects, deadlines and completion status.
+| Technology | Purpose |
+|---|---|
+| Android Studio | Android application development |
+| Kotlin | Main programming language |
+| XML | User interface layouts |
+| Supabase | Authentication and cloud database services |
+| PostgreSQL | Online relational database |
+| Room | Local database storage |
+| SQLite | Local data persistence |
+| WorkManager | Background synchronisation |
+| Firebase Cloud Messaging | Push notification functionality |
+| Retrofit | API communication |
+| Git and GitHub | Version control and source code management |
+| Gradle | Project build and dependency management |
 
-### Examination Management
+## 5. Application Requirements
 
-Students can store examination information such as subjects, dates, times and venues.
+To run the project, the following software is required:
 
-### Flashcards
+- Android Studio.
+- Android SDK.
+- Kotlin support.
+- An Android device or emulator.
+- Internet connection for cloud-based features.
+- A configured Supabase project.
+- Firebase configuration for push notification functionality.
 
-Students can create flashcards containing:
+**Minimum Android SDK:** API 24
 
-- Subject
-- Question or term
-- Answer or definition
+**Application ID:** `com.example.studylinksa`
 
-Students can reveal the answer and indicate whether they know the answer or still need to practise the card.
+## 6. How to Install and Run the Application
 
-### Quiz
+1. Download or clone the StudyLink SA repository from GitHub.
+2. Open Android Studio.
+3. Select **Open** and choose the downloaded project folder.
+4. Allow Android Studio to synchronise the Gradle files.
+5. Configure the required Supabase and Google Sign-In credentials using the configuration expected by the project.
+6. Add the required Firebase configuration file if it is not already included.
+7. Connect an Android device or start an emulator.
+8. Select the application and click **Run**.
+9. Register an account or sign in to access the application.
 
-The application uses the Open Trivia Database REST API to retrieve quiz questions.
+**Important:** Do not upload private API keys, service-role keys, passwords or other confidential credentials to GitHub. Use the appropriate local configuration files for development.
 
-Students can answer multiple-choice questions and receive a score based on their answers.
+## 7. Database and API Integration
 
-### Settings
+StudyLink SA uses Supabase services to support online authentication and academic data management.
 
-Users can manage settings such as:
+The application communicates with the Supabase backend to access information such as:
 
-- Name
-- Language
-- Notification preferences
+- Student profiles.
+- Assignments.
+- Examinations.
+- Timetable information.
 
-### Logout
+Room provides local storage for academic records, while WorkManager is used to support background synchronisation when an internet connection is available.
 
-Users can securely log out of the application and return to the login screen.
+The application also uses external API functionality to retrieve quiz questions.
 
----
+## 8. Project Structure
 
-## Technologies Used
+The project follows an Android application structure using Kotlin source files and XML layouts.
 
-The project was developed using:
+Main application components include:
 
-- Kotlin
-- Android Studio
-- Android SDK
-- XML layouts
-- Retrofit
-- Gson
-- REST API
-- Open Trivia Database API
-- SharedPreferences
-- GitHub
+- `DashboardActivity` – Main application dashboard.
+- `SettingsActivity` – Application settings.
+- `TimetableActivity` – Timetable management.
+- `AssignmentsActivity` – Assignment management.
+- `ExamsActivity` – Examination management.
+- `FlashcardActivity` – Flashcard learning functionality.
+- `QuizActivity` – Quiz functionality.
+- `AcademicRepository` – Academic data management.
+- `AcademicDao` – Local database access.
+- `AcademicSyncWorker` – Background data synchronisation.
+- `NotificationHelper` – Notification management.
 
----
+## 9. Testing
 
-## REST API
+The application should be tested on an Android emulator and a physical Android device.
 
-StudyLink SA uses the Open Trivia Database API to retrieve quiz questions.
+The following areas are important during testing:
 
-The application sends an HTTP request to the API and receives quiz questions in JSON format.
+- User registration and login.
+- Google Sign-In.
+- Academic record creation and retrieval.
+- Database connectivity.
+- Offline access and data synchronisation.
+- Notification delivery.
+- Language selection.
+- User settings.
+- Input validation and error handling.
+- Navigation between application screens.
 
+Testing should also include invalid inputs, unavailable internet connections and other situations that could affect application stability.
 
+## 10. Screenshots and Demonstration Video
+
+Screenshots of the completed application should be added to this section to demonstrate its interface and functionality.
+
+Suggested screenshots include:
+
+1. Login screen.
+2. Registration screen.
+3. Dashboard.
+4. Assignments screen.
+5. Examinations screen.
+6. Timetable screen.
+7. Flashcards screen.
+8. Quiz screen.
+9. Settings and language selection.
+
+**Demonstration video:**  
+[Insert your unlisted YouTube demonstration video link here.]
+
+The demonstration video should include a voice-over explaining the main features and showing the application running on an Android device.
+
+## 11. GitHub and Version Control
+
+GitHub is used to store and manage the StudyLink SA source code.
+
+The repository supports version control and provides a record of the application's development.
+
+**GitHub Repository:**  
+https://github.com/avilengesimani/StudyLink-SA
+
+The final repository should contain:
+
+- Complete Kotlin source code.
+- XML layout files.
+- Required application resources.
+- Gradle configuration files.
+- README documentation.
+- Automated tests.
+- GitHub Actions workflow, where configured.
+- Release notes and final project version.
+
+## 12. Future Improvements
+
+Possible future improvements include:
+
+- Expanding language translations across all application screens.
+- Improving cloud database integration and synchronisation.
+- Expanding automated testing.
+- Improving notification scheduling and delivery.
+- Adding further learning and academic tracking tools.
+- Completing Google Play Store preparation and publication requirements.
+- Improving application security and performance.
+
+## 13. Conclusion
+
+StudyLink SA was developed to provide students with a centralised platform for managing academic activities and supporting their learning. Through features such as authentication, academic management, quizzes, flashcards, database integration and notifications, the application aims to make student organisation more convenient and accessible.
+
+The project also provided practical experience in Android development, Kotlin programming, API integration, database management, testing and version control. Further improvements can strengthen the application's functionality, reliability and readiness for wider use.
+
+## 14. Developer and Academic Information
+
+**Project Name:** StudyLink SA  
+**Module:** OPSC6312 – Programming Fundamentals  
+**Assessment:** Part 3 – Final Asset Development, Additions, Tweaking and Final Submission  
+**Development Platform:** Android Studio  
+**Programming Language:** Kotlin  
+**Repository:** https://github.com/avilengesimani/StudyLink-SA
