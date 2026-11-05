@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StudyLink SA</string>
+
+    <string name="login_tagline">Umlingani wakho wokufunda</string>
+    <string name="email">I-imeyili</string>
+    <string name="password">Iphasiwedi</string>
+    <string name="login">Ngena ngemvume</string>
+    <string name="google_login">Qhubeka ngeGoogle</string>
+    <string name="create_account">Dala i-akhawunti</string>
+
+    <string name="settings_title">Izilungiselelo</string>
+    <string name="name">Igama</string>
+    <string name="language">Ulimi</string>
+    <string name="notifications">Izaziso</string>
+    <string name="save_settings">Gcina izilungiselelo</string>
+    <string name="settings_saved">Izilungiselelo zilondoloziwe</string>
+
+    <string-array name="language_options">
+        <item>English</item>
+        <item>isiXhosa</item>
+        <item>isiZulu</item>
+    </string-array>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "983799585706",
+    "project_id": "studylink-sa-8b792",
+    "storage_bucket": "studylink-sa-8b792.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983799585706:android:faf50a6053dac87f32e9d3",
+        "android_client_info": {
+          "package_name": "com.example.studylinksa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAC7KKlThSyGqvz6lKlTbN4-dilEVnoIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

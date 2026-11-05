@@ -6,6 +6,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import io.github.jan.supabase.auth.providers.builtin.Email
+import kotlinx.coroutines.launch
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
+import io.github.jan.supabase.auth.auth
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -15,100 +21,76 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var confirmPassword: EditText
     private lateinit var registerButton: Button
 
-    private lateinit var userStorage: UserStorage
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_register)
-
-        userStorage = UserStorage(this)
 
         name = findViewById(R.id.etName)
         email = findViewById(R.id.etRegisterEmail)
         password = findViewById(R.id.etRegisterPassword)
-        confirmPassword =
-            findViewById(R.id.etConfirmPassword)
-
-        registerButton =
-            findViewById(R.id.btnCreateAccount)
+        confirmPassword = findViewById(R.id.etConfirmPassword)
+        registerButton = findViewById(R.id.btnCreateAccount)
 
         registerButton.setOnClickListener {
+            registerUser()
+        }
+    }
 
-            val nameText = name.text.toString().trim()
-            val emailText = email.text.toString().trim()
-            val passwordText = password.text.toString()
-            val confirmText =
-                confirmPassword.text.toString()
+    private fun registerUser() {
 
-            if (
-                nameText.isEmpty() ||
-                emailText.isEmpty() ||
-                passwordText.isEmpty()
-            ) {
+        val nameText = name.text.toString().trim()
+        val emailText = email.text.toString().trim()
+        val passwordText = password.text.toString()
+        val confirmText = confirmPassword.text.toString()
 
-                Toast.makeText(
-                    this,
-                    "Please complete all fields",
-                    Toast.LENGTH_SHORT
-                ).show()
+        if (nameText.isEmpty() || emailText.isEmpty() ||
+            passwordText.isEmpty() || confirmText.isEmpty()) {
+            Toast.makeText(this, "Please complete all fields", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-                return@setOnClickListener
-            }
+        if (passwordText.length < 6) {
+            Toast.makeText(this, "Password must contain at least 6 characters", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-            if (passwordText.length < 6) {
+        if (passwordText != confirmText) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-                Toast.makeText(
-                    this,
-                    "Password must contain at least 6 characters",
-                    Toast.LENGTH_SHORT
-                ).show()
+        registerButton.isEnabled = false
 
-                return@setOnClickListener
-            }
+        lifecycleScope.launch {
+            try {
+                SupabaseClientProvider.client.auth.signUpWith(Email) {
+                    this.email = emailText
+                    this.password = passwordText
 
-            if (passwordText != confirmText) {
-
-                Toast.makeText(
-                    this,
-                    "Passwords do not match",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                return@setOnClickListener
-            }
-
-            val created =
-                userStorage.registerUser(
-                    nameText,
-                    emailText,
-                    passwordText
-                )
-
-            if (created) {
+                    this.data = buildJsonObject {
+                        put("full_name", nameText)
+                    }
+                }
 
                 Toast.makeText(
-                    this,
-                    "Account created successfully",
-                    Toast.LENGTH_SHORT
+                    this@RegisterActivity,
+                    "Account created! Please check your email and confirm your account before logging in.",
+                    Toast.LENGTH_LONG
                 ).show()
 
-                startActivity(
-                    Intent(
-                        this,
-                        MainActivity::class.java
-                    )
-                )
-
+                startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                 finish()
 
-            } else {
+            } catch (e: Exception) {
 
                 Toast.makeText(
-                    this,
-                    "An account with this email already exists",
-                    Toast.LENGTH_SHORT
+                    this@RegisterActivity,
+                    "Registration failed: ${e.message}",
+                    Toast.LENGTH_LONG
                 ).show()
+
+            } finally {
+                registerButton.isEnabled = true
             }
         }
     }
